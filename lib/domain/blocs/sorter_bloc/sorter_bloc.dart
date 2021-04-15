@@ -25,7 +25,7 @@ class SorterBloc extends Bloc<SorterEvent, SorterState> {
     final sortResult = await _repository.classify(image.path);
     yield SorterLoaded(
       image: File(image.path),
-      sortResult: sortResult.toString(),
+      sortResult: sortResult.first.label,
     );
   }
 }
