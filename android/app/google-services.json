@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "816896651750",
+    "project_id": "wastesorter-e6f1e",
+    "storage_bucket": "wastesorter-e6f1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816896651750:android:131d216e3cd97279622627",
+        "android_client_info": {
+          "package_name": "com.vpaniush.waste_sorter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816896651750-apnbp78kom6rort3kd9rgh72v3c9jc9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmrQ6HIHbhFImzQC_zB1SinPkIE5zX2ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816896651750-apnbp78kom6rort3kd9rgh72v3c9jc9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
