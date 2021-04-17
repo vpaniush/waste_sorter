@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waste_sorter/domain/blocs/sorter_bloc/bloc.dart';
+import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 
 class SorterScreen extends StatelessWidget {
   @override
@@ -14,13 +15,13 @@ class SorterScreen extends StatelessWidget {
           children: [
             _pickImageButton(
               context,
-              icon: Icons.camera_alt,
+              title: 'From camera',
               imageSource: ImageSource.camera,
             ),
             SizedBox(width: 20),
             _pickImageButton(
               context,
-              icon: Icons.image,
+              title: 'From gallery',
               imageSource: ImageSource.gallery,
             ),
           ],
@@ -50,12 +51,15 @@ class SorterScreen extends StatelessWidget {
 
   Widget _pickImageButton(
     BuildContext context, {
-    IconData icon,
+    String title,
     ImageSource imageSource,
   }) =>
-      FloatingActionButton(
-        onPressed: () => _classifyImage(context, imageSource: imageSource),
-        child: Icon(icon),
+      Padding(
+        padding: EdgeInsets.all(10),
+        child: WSButton(
+          onPressed: () => _classifyImage(context, imageSource: imageSource),
+          title: title,
+        ),
       );
 
   void _classifyImage(BuildContext context, {ImageSource imageSource}) {

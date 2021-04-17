@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:waste_sorter/domain/repositories/user_repository.dart';
 import 'package:waste_sorter/domain/repositories/waste_sorting_repository.dart';
 
 import 'app_event.dart';
@@ -7,8 +8,12 @@ import 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   final WasteSortingRepository wasteSortingRepository;
+  final UserRepository userRepository;
 
-  AppBloc({@required this.wasteSortingRepository}) : super(AppInitial());
+  AppBloc({
+    @required this.wasteSortingRepository,
+    @required this.userRepository,
+  }) : super(AppInitial());
 
   @override
   Stream<AppState> mapEventToState(AppEvent event) async* {
@@ -19,7 +24,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Stream<AppState> _mapLoadApp(LoadApp event) async* {
     await wasteSortingRepository.load();
-    yield AppLoaded();
+    final isSignedIn = await userRepository.isSignedIn();
+    yield AppLoaded(isSignedIn: isSignedIn);
   }
 
   @override
