@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/domain/blocs/auth_bloc/bloc.dart';
-import 'package:waste_sorter/presentation/screens/sorter/sorter_screen.dart';
+import 'package:waste_sorter/presentation/screens/home/home_screen.dart';
 import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 import 'package:waste_sorter/presentation/widgets/ws_text_field.dart';
 
@@ -103,7 +103,7 @@ class _AuthScreenState extends State<AuthScreen> {
   void _goNext() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (_) => SorterScreen()),
+      MaterialPageRoute(builder: (_) => HomeScreen()),
       (route) => false,
     );
   }

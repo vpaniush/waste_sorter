@@ -9,6 +9,8 @@ abstract class SorterEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class LoadSorter extends SorterEvent {}
+
 class ClassifyImage extends SorterEvent {
   final ImageSource imageSource;
 
