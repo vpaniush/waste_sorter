@@ -18,7 +18,7 @@ class TFliteWasteSortingService implements WasteSortingService {
     final data = await Tflite.runModelOnImage(
       path: path,
       numResults: 6,
-      threshold: 0.5,
+      threshold: 0.75,
       imageMean: 127.5,
       imageStd: 127.5,
     );

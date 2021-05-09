@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waste_sorter/domain/blocs/sorter_bloc/bloc.dart';
 import 'package:waste_sorter/presentation/widgets/ws_button.dart';
@@ -9,28 +10,11 @@ class SorterScreen extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(title: Text('Sorter')),
         body: _body(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _pickImageButton(
-              context,
-              title: 'From camera',
-              imageSource: ImageSource.camera,
-            ),
-            SizedBox(width: 20),
-            _pickImageButton(
-              context,
-              title: 'From gallery',
-              imageSource: ImageSource.gallery,
-            ),
-          ],
-        ),
       );
 
   Widget _body() => BlocBuilder<SorterBloc, SorterState>(
         builder: (context, state) {
-          if (state is SorterLoaded && state.image != null) {
+          if (state is SorterLoaded) {
             return buildUI(context, state);
           }
           return Container();
@@ -40,13 +24,35 @@ class SorterScreen extends StatelessWidget {
   Widget buildUI(BuildContext context, SorterLoaded state) =>
       SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.file(state.image),
-            SizedBox(height: 50),
-            Text(state.sortResult),
-            SizedBox(height: 100),
+            _imagePickers(context),
+            if (state.image != null) ...[
+              SizedBox(height: 20.h),
+              Text(state.sortResult.toUpperCase()),
+              SizedBox(height: 20.h),
+              Image.file(state.image),
+              SizedBox(height: 20.h),
+            ],
           ],
         ),
+      );
+
+  Widget _imagePickers(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _pickImageButton(
+            context,
+            title: 'From camera',
+            imageSource: ImageSource.camera,
+          ),
+          SizedBox(width: 20.w),
+          _pickImageButton(
+            context,
+            title: 'From gallery',
+            imageSource: ImageSource.gallery,
+          ),
+        ],
       );
 
   Widget _pickImageButton(
@@ -55,7 +61,7 @@ class SorterScreen extends StatelessWidget {
     ImageSource imageSource,
   }) =>
       Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.r),
         child: WSButton(
           onPressed: () => _classifyImage(context, imageSource: imageSource),
           title: title,

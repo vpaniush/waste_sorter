@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/data/api/auth/firebase_auth_service.dart';
+import 'package:waste_sorter/data/api/stats/firebase_stats_service.dart';
 import 'package:waste_sorter/data/api/waste_sorting/tflite_waste_sorting_service.dart';
 import 'package:waste_sorter/domain/blocs/app_bloc/bloc.dart';
 import 'package:waste_sorter/domain/blocs/auth_bloc/bloc.dart';
 import 'package:waste_sorter/domain/blocs/sorter_bloc/bloc.dart';
+import 'package:waste_sorter/domain/blocs/stats_bloc/bloc.dart';
+import 'package:waste_sorter/domain/repositories/stats_repository.dart';
 import 'package:waste_sorter/domain/repositories/user_repository.dart';
 import 'package:waste_sorter/domain/repositories/waste_sorting_repository.dart';
 import 'package:waste_sorter/presentation/screens/auth/auth_screen.dart';
 import 'package:waste_sorter/presentation/styles/design_config.dart';
 
-import 'screens/sorter/sorter_screen.dart';
+import 'screens/home/home_screen.dart';
 
 class App extends StatelessWidget {
   @override
@@ -47,6 +50,11 @@ class App extends StatelessWidget {
             FirebaseAuthService(),
           ),
         ),
+        RepositoryProvider<StatsRepository>(
+          create: (context) => StatsRepository(
+            FirebaseStatsService(),
+          ),
+        ),
       ];
 
   _blocProviders() => [
@@ -60,11 +68,17 @@ class App extends StatelessWidget {
         BlocProvider<SorterBloc>(
           create: (context) => SorterBloc(
             RepositoryProvider.of<WasteSortingRepository>(context),
-          ),
+            RepositoryProvider.of<StatsRepository>(context),
+          )..add(LoadSorter()),
         ),
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(
             RepositoryProvider.of<UserRepository>(context),
+          ),
+        ),
+        BlocProvider<StatsBloc>(
+          create: (context) => StatsBloc(
+            RepositoryProvider.of<StatsRepository>(context),
           ),
         ),
       ];
@@ -76,7 +90,7 @@ class App extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: state.isSignedIn
-            ? SorterScreen()
+            ? HomeScreen()
             : AuthScreen(AuthScreenType.signIn),
       );
 }
