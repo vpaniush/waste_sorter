@@ -58,7 +58,7 @@ class SorterScreen extends StatelessWidget {
 
   Widget _sortResult(SorterLoaded state) => Text(
         state.sortResult.toUpperCase(),
-        style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
       );
 
   Widget _pickImageButton(
