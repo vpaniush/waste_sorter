@@ -17,7 +17,7 @@ class SwitchAuthFlowInkwell extends StatelessWidget {
               : 'Already have an account? Sign in',
           style: TextStyle(
             color: Colors.green[300],
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

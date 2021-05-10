@@ -18,7 +18,7 @@ class WSButton extends StatelessWidget {
         style: _style(),
       );
 
-  Widget _child() => Text(title, style: TextStyle(fontSize: 14.sp));
+  Widget _child() => Text(title, style: TextStyle(fontSize: 15.sp));
 
   ButtonStyle _style() => ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 30.w),
