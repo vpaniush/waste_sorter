@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waste_sorter/domain/blocs/sorter_bloc/bloc.dart';
+import 'package:waste_sorter/presentation/widgets/ws_app_bar.dart';
 import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 
 class SorterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text('Sorter')),
+        appBar: WsAppBar.build(title: 'Sort waste'),
         body: _body(),
       );
 
@@ -29,7 +30,7 @@ class SorterScreen extends StatelessWidget {
             _imagePickers(context),
             if (state.image != null) ...[
               SizedBox(height: 20.h),
-              Text(state.sortResult.toUpperCase()),
+              _sortResult(state),
               SizedBox(height: 20.h),
               Image.file(state.image),
               SizedBox(height: 20.h),
@@ -53,6 +54,11 @@ class SorterScreen extends StatelessWidget {
             imageSource: ImageSource.gallery,
           ),
         ],
+      );
+
+  Widget _sortResult(SorterLoaded state) => Text(
+        state.sortResult.toUpperCase(),
+        style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
       );
 
   Widget _pickImageButton(

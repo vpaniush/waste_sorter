@@ -15,6 +15,7 @@ import 'package:waste_sorter/presentation/screens/auth/auth_screen.dart';
 import 'package:waste_sorter/presentation/styles/design_config.dart';
 
 import 'screens/home/home_screen.dart';
+import 'styles/ws_theme.dart';
 
 class App extends StatelessWidget {
   @override
@@ -84,11 +85,8 @@ class App extends StatelessWidget {
       ];
 
   Widget _materialApp(AppLoaded state) => MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        title: 'Waste Sorter',
+        theme: WsTheme.data(),
         home: state.isSignedIn
             ? HomeScreen()
             : AuthScreen(AuthScreenType.signIn),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/domain/blocs/auth_bloc/bloc.dart';
 import 'package:waste_sorter/presentation/screens/home/home_screen.dart';
+import 'package:waste_sorter/presentation/widgets/ws_app_bar.dart';
 import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 import 'package:waste_sorter/presentation/widgets/ws_text_field.dart';
 
@@ -39,13 +40,15 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget buildUI() => GestureDetector(
         onTap: _unfocus,
         child: Scaffold(
-          appBar: AppBar(title: Text(_title)),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(50.w),
-              child: _content(),
-            ),
-          ),
+          appBar: WsAppBar.build(title: _title),
+          body: _body(),
+        ),
+      );
+
+  Widget _body() => SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(50.w),
+          child: _content(),
         ),
       );
 
@@ -56,9 +59,9 @@ class _AuthScreenState extends State<AuthScreen> {
           _emailField(),
           SizedBox(height: 20.h),
           _passwordField(),
-          SizedBox(height: 30.h),
+          SizedBox(height: 20.h),
           _button(),
-          SizedBox(height: 30.h),
+          SizedBox(height: 25.h),
           SwitchAuthFlowInkwell(type: type),
           _keyboardHandler(),
         ],

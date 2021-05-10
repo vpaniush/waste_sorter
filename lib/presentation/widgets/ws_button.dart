@@ -5,8 +5,11 @@ class WSButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
 
-  const WSButton({Key key, @required this.onPressed, @required this.title})
-      : super(key: key);
+  const WSButton({
+    Key key,
+    @required this.onPressed,
+    @required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ElevatedButton(
@@ -15,9 +18,10 @@ class WSButton extends StatelessWidget {
         style: _style(),
       );
 
-  Widget _child() => Text(title);
+  Widget _child() => Text(title, style: TextStyle(fontSize: 14.sp));
 
   ButtonStyle _style() => ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 30.w),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
       );
 }
