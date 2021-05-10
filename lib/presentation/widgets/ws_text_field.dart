@@ -18,6 +18,7 @@ class WSTextField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         decoration: _decoration(),
+        style: TextStyle(fontSize: 15.sp),
       );
 
   InputDecoration _decoration() => InputDecoration(

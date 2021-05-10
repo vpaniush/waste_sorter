@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/domain/blocs/stats_bloc/bloc.dart';
 
 class StatsChart extends StatelessWidget {
@@ -42,6 +43,7 @@ class StatsChart extends StatelessWidget {
               rod.y.round().toString(),
               TextStyle(
                 color: Colors.black,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.bold,
               ),
             );
@@ -53,12 +55,12 @@ class StatsChart extends StatelessWidget {
         show: true,
         bottomTitles: SideTitles(
           showTitles: true,
-          getTextStyles: (value) => const TextStyle(
+          getTextStyles: (value) => TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 14,
+            fontSize: 14.sp,
           ),
-          margin: 20,
+          margin: 20.h,
           getTitles: (value) => _getTitles(value, state),
         ),
         leftTitles: SideTitles(showTitles: false),
@@ -86,8 +88,9 @@ class StatsChart extends StatelessWidget {
         barRods: [
           BarChartRodData(
             y: y,
-            width: 15,
+            width: 15.w,
             borderRadius: BorderRadius.zero,
+            colors: [Colors.green[400]]
           )
         ],
         showingTooltipIndicators: [0],

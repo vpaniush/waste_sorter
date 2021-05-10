@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../auth_screen.dart';
 
@@ -14,6 +15,11 @@ class SwitchAuthFlowInkwell extends StatelessWidget {
           type == AuthScreenType.signIn
               ? "Don't have an account? Sign up"
               : 'Already have an account? Sign in',
+          style: TextStyle(
+            color: Colors.green[300],
+            fontSize: 14.sp,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       );
 

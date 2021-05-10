@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/domain/blocs/stats_bloc/bloc.dart';
+import 'package:waste_sorter/presentation/widgets/ws_app_bar.dart';
 
 import 'local_widgets/stats_chart.dart';
 
@@ -20,31 +22,31 @@ class _StatsScreenState extends State<StatsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: _appBar(),
+        appBar: WsAppBar.build(title: 'Statistics'),
         body: _body(),
       );
 
-  Widget _appBar() => AppBar(title: Text('Statistics'));
-
   Widget _body() => Padding(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(15.r),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _description(),
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _chart(),
             ],
           ),
         ),
       );
 
-  Widget _description() =>
-      Text('Here is your all-time statistics by waste types.');
+  Widget _description() => Text(
+        'Here is your all-time statistics by waste types.',
+        style: TextStyle(fontSize: 16.sp),
+      );
 
   Widget _chart() => Container(
-        padding: EdgeInsets.only(top: 100, left: 5, right: 5),
+        padding: EdgeInsets.only(top: 100.h, left: 5.w, right: 5.w),
         color: Colors.grey[300],
         child: StatsChart(),
       );
