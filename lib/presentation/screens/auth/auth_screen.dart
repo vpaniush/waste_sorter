@@ -6,6 +6,7 @@ import 'package:waste_sorter/presentation/screens/home/home_screen.dart';
 import 'package:waste_sorter/presentation/widgets/ws_app_bar.dart';
 import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 import 'package:waste_sorter/presentation/widgets/ws_text_field.dart';
+import 'package:waste_sorter/presentation/widgets/ws_validation_message.dart';
 
 import 'local_widgets/switch_auth_flow_inkwell.dart';
 
@@ -34,31 +35,42 @@ class _AuthScreenState extends State<AuthScreen> {
         listener: (context, state) {
           if (state is AuthSignedIn) _goNext();
         },
-        child: buildUI(),
+        child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthInitial) {
+              return buildUI(state);
+            }
+            return Container();
+          },
+        ),
       );
 
-  Widget buildUI() => GestureDetector(
+  Widget buildUI(AuthInitial state) => GestureDetector(
         onTap: _unfocus,
         child: Scaffold(
           appBar: WsAppBar.build(title: _title),
-          body: _body(),
+          body: _body(state),
         ),
       );
 
-  Widget _body() => SingleChildScrollView(
+  Widget _body(AuthInitial state) => SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(50.w),
-          child: _content(),
+          child: _content(state),
         ),
       );
 
-  Widget _content() => Column(
+  Widget _content(AuthInitial state) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 100.h),
-          _emailField(),
+          _emailField(state),
+          if (state.emailErrorMessage != null)
+            WsValidationMessage(state.emailErrorMessage),
           SizedBox(height: 20.h),
-          _passwordField(),
+          _passwordField(state),
+          if (state.passwordErrorMessage != null)
+            WsValidationMessage(state.passwordErrorMessage),
           SizedBox(height: 20.h),
           _button(),
           SizedBox(height: 25.h),
@@ -67,14 +79,22 @@ class _AuthScreenState extends State<AuthScreen> {
         ],
       );
 
-  Widget _emailField() => WSTextField(
+  Widget _emailField(AuthInitial state) => WSTextField(
         controller: _emailController,
+        onChanged: (text) {
+          _blocAddEvent(EmailOnChanged(text));
+        },
         hintText: 'Email',
+        isValid: state.emailErrorMessage == null,
       );
 
-  Widget _passwordField() => WSTextField(
+  Widget _passwordField(AuthInitial state) => WSTextField(
         controller: _passwordController,
+        onChanged: (text) {
+          _blocAddEvent(PasswordOnChanged(text));
+        },
         hintText: 'Password',
+        isValid: state.passwordErrorMessage == null,
         obscureText: true,
       );
 
