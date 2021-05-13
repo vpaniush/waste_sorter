@@ -8,7 +8,15 @@ abstract class AuthState extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthInitial extends AuthState {}
+class AuthInitial extends AuthState {
+  final String emailErrorMessage;
+  final String passwordErrorMessage;
+
+  AuthInitial({this.emailErrorMessage, this.passwordErrorMessage});
+
+  @override
+  List<Object> get props => [emailErrorMessage, passwordErrorMessage];
+}
 
 class AuthSignedIn extends AuthState {
   final User user;

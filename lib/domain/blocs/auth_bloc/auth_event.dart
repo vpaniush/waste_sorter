@@ -28,4 +28,20 @@ class SignIn extends AuthEvent {
   List<Object> get props => [email, password];
 }
 
-class SignOut extends AuthEvent {}
+class EmailOnChanged extends AuthEvent {
+  final String email;
+
+  EmailOnChanged(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
+
+class PasswordOnChanged extends AuthEvent {
+  final String password;
+
+  PasswordOnChanged(this.password);
+
+  @override
+  List<Object> get props => [password];
+}
