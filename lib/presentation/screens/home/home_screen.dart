@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_sorter/presentation/screens/sorter/sorter_screen.dart';
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: WsAppBar.build(title: 'Waste Sorter'),
+        appBar: WsAppBar.build(title: 'WasteSorter'),
         body: _body(context),
       );
 
@@ -20,12 +21,12 @@ class HomeScreen extends StatelessWidget {
           children: [
             WSButton(
               onPressed: () => _navigateTo(context, SorterScreen()),
-              title: 'Sort waste',
+              title: 'sort_waste'.tr(),
             ),
             SizedBox(height: 20.h),
             WSButton(
               onPressed: () => _navigateTo(context, StatsScreen()),
-              title: 'View statistics',
+              title: 'view_statistics'.tr(),
             ),
           ],
         ),

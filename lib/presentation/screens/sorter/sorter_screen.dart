@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +12,7 @@ import 'package:waste_sorter/presentation/widgets/ws_button.dart';
 class SorterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: WsAppBar.build(title: 'Sort waste'),
+        appBar: WsAppBar.build(title: 'sort_waste'.tr()),
         body: _body(),
       );
 
@@ -22,21 +25,18 @@ class SorterScreen extends StatelessWidget {
         },
       );
 
-  Widget buildUI(BuildContext context, SorterLoaded state) =>
-      SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _imagePickers(context),
-            if (state.image != null) ...[
-              SizedBox(height: 20.h),
-              _sortResult(state),
-              SizedBox(height: 20.h),
-              Image.file(state.image),
-              SizedBox(height: 20.h),
-            ],
+  Widget buildUI(BuildContext context, SorterLoaded state) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _imagePickers(context),
+          if (state.image != null) ...[
+            SizedBox(height: 15.h),
+            _sortResult(state),
+            SizedBox(height: 20.h),
+            _image(state.image),
+            SizedBox(height: 20.h),
           ],
-        ),
+        ],
       );
 
   Widget _imagePickers(BuildContext context) => Row(
@@ -44,21 +44,21 @@ class SorterScreen extends StatelessWidget {
         children: [
           _pickImageButton(
             context,
-            title: 'From camera',
+            title: 'from_camera'.tr(),
             imageSource: ImageSource.camera,
           ),
           SizedBox(width: 20.w),
           _pickImageButton(
             context,
-            title: 'From gallery',
+            title: 'from_gallery'.tr(),
             imageSource: ImageSource.gallery,
           ),
         ],
       );
 
   Widget _sortResult(SorterLoaded state) => Text(
-        state.sortResult.toUpperCase(),
-        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+        '${'type_of_waste_is'.tr()}: ${state.sortResult.tr()}',
+        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
       );
 
   Widget _pickImageButton(
@@ -79,4 +79,14 @@ class SorterScreen extends StatelessWidget {
       ClassifyImage(imageSource: imageSource),
     );
   }
+
+  Widget _image(File image) => Container(
+        decoration: BoxDecoration(border: Border.all(width: 0.5.r)),
+        child: Image.file(
+          image,
+          width: 360.w,
+          height: 360.w,
+          fit: BoxFit.contain,
+        ),
+      );
 }

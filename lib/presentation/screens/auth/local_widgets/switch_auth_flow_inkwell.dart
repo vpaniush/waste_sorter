@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,8 +14,8 @@ class SwitchAuthFlowInkwell extends StatelessWidget {
         onTap: () => _switchFlow(context),
         child: Text(
           type == AuthScreenType.signIn
-              ? "Don't have an account? Sign up"
-              : 'Already have an account? Sign in',
+              ? 'dont_have_account'.tr()
+              : 'already_have_account'.tr(),
           style: TextStyle(
             color: Colors.green[300],
             fontSize: 15.sp,

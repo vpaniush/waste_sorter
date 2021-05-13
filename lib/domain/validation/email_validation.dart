@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import 'validation.dart';
 
 class EmailValidation implements Validation {
@@ -9,7 +11,10 @@ class EmailValidation implements Validation {
     if (isValid) {
       validationResult = ValidationResult(isValid, null);
     } else {
-      validationResult = ValidationResult(isValid, 'Email is not valid');
+      validationResult = ValidationResult(
+        isValid,
+        'email_validation_message'.tr(),
+      );
     }
     return validationResult;
   }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +68,7 @@ class StatsChart extends StatelessWidget {
       );
 
   String _getTitles(double value, StatsLoaded state) =>
-      state.stats.keys.elementAt(value.toInt());
+      state.stats.keys.elementAt(value.toInt()).tr();
 
   List<BarChartGroupData> _barGroups(StatsLoaded state) {
     final stats = state.stats;

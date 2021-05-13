@@ -11,6 +11,7 @@ void main() async {
     EasyLocalization(
       child: App(),
       supportedLocales: [
+        Locale('en'),
         Locale('uk'),
       ],
       path: 'assets/translations',
