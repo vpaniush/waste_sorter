@@ -1,0 +1,23 @@
+{
+  "already_have_account": "Already have an account? Sign in",
+  "cardboard": "cardboard",
+  "dont_have_account": "Don't have an account? Sign up",
+  "email": "Email",
+  "email_validation_message": "Email is not valid.",
+  "from_camera": "From camera",
+  "from_gallery": "From gallery",
+  "glass": "glass",
+  "metal": "metal",
+  "paper": "paper",
+  "password": "Password",
+  "password_validation_message": "Password must be at least 6 characters long.",
+  "plastic": "plastic",
+  "sign_in": "Sign in",
+  "sign_up": "Sign up",
+  "type_of_waste_is": "Type of waste is",
+  "sort_waste": "Sort waste",
+  "statistics": "Statistics",
+  "stats_description": "Here is your all-time statistics by waste types.",
+  "trash": "trash",
+  "view_statistics": "View statistics"
+}

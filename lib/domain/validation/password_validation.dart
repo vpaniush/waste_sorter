@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import 'validation.dart';
 
 class PasswordValidation implements Validation {
@@ -9,7 +11,7 @@ class PasswordValidation implements Validation {
     } else {
       validationResult = ValidationResult(
         false,
-        'Password must be at least 6 characters long',
+        'password_validation_message'.tr(),
       );
     }
     return validationResult;

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class _StatsScreenState extends State<StatsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: WsAppBar.build(title: 'Statistics'),
+        appBar: WsAppBar.build(title: 'statistics'.tr()),
         body: _body(),
       );
 
@@ -41,7 +42,7 @@ class _StatsScreenState extends State<StatsScreen> {
       );
 
   Widget _description() => Text(
-        'Here is your all-time statistics by waste types.',
+        'stats_description'.tr(),
         style: TextStyle(fontSize: 16.sp),
       );
 

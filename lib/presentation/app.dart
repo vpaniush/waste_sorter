@@ -85,7 +85,7 @@ class App extends StatelessWidget {
       ];
 
   Widget _materialApp(AppLoaded state) => MaterialApp(
-        title: 'Waste Sorter',
+        title: 'WasteSorter',
         theme: WsTheme.data(),
         home: state.isSignedIn
             ? HomeScreen()

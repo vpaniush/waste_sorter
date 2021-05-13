@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +29,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   _AuthScreenState(this.type)
-      : _title = type == AuthScreenType.signIn ? 'Sign in' : 'Sign up';
+      : _title =
+            type == AuthScreenType.signIn ? 'sign_in'.tr() : 'sign_up'.tr();
 
   @override
   Widget build(BuildContext context) => BlocListener<AuthBloc, AuthState>(
@@ -84,7 +86,7 @@ class _AuthScreenState extends State<AuthScreen> {
         onChanged: (text) {
           _blocAddEvent(EmailOnChanged(text));
         },
-        hintText: 'Email',
+        hintText: 'email'.tr(),
         isValid: state.emailErrorMessage == null,
       );
 
@@ -93,7 +95,7 @@ class _AuthScreenState extends State<AuthScreen> {
         onChanged: (text) {
           _blocAddEvent(PasswordOnChanged(text));
         },
-        hintText: 'Password',
+        hintText: 'password'.tr(),
         isValid: state.passwordErrorMessage == null,
         obscureText: true,
       );

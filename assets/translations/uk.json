@@ -1,1 +1,23 @@
-{}
+{
+  "already_have_account": "Вже зареєструвалися? Увійдіть",
+  "cardboard": "картон",
+  "dont_have_account": "Не маєте аккаунта? Зареєструйтеся",
+  "email": "Пошта",
+  "email_validation_message": "Вказана пошта не є валідною.",
+  "from_camera": "Зробити знімок",
+  "from_gallery": "З галереї",
+  "glass": "скло",
+  "metal": "метал",
+  "paper": "папір",
+  "password": "Пароль",
+  "password_validation_message": "Пароль повинен бути довжиною щонайменше 6 символів.",
+  "plastic": "пластик",
+  "sign_in": "Увійти",
+  "sign_up": "Зареєструватися",
+  "sort_waste": "Сортувати сміття",
+  "statistics": "Статистика",
+  "stats_description": "Тут вказана Ваша статистика за типами сміття за весь час.",
+  "trash": "інше",
+  "type_of_waste_is": "Тип сміття",
+  "view_statistics": "Переглянути статистику"
+}
